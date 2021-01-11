@@ -1,0 +1,34 @@
+
+
+<mat-toolbar class="col-xs-4" type='text' *ngIf="successMsg"  
+style=" 
+font-size: 13px;  
+border-radius: 10px;  
+height: 40px; background-color: rgba(70, 241, 79, 0.96);" >{{ successMsg }}</mat-toolbar>
+
+<mat-toolbar  *ngIf="errorMsg" color="warn" style="font-size: 14px; border-radius: 10px; height: 40px;" >{{ errorMsg }}</mat-toolbar>
+
+<nav>
+    <div class="btn-app">
+    <a class="btn" routerLink="/appointment-list" routerLinkActive="active">Appointment List</a>
+</div>
+</nav>
+
+<div class="container">
+    <form (submit)="createAppointment()">
+        <mat-form-field>
+          <mat-label>Select date and time</mat-label>
+            <input matInput [ngxMatDatetimePicker]="$any(picker)" [(ngModel)]="appointmentDateTime"  
+             name="appointmentDateTime" >
+          <mat-datepicker-toggle matSuffix [for]="$any(picker)"  ></mat-datepicker-toggle>
+          <ngx-mat-datetime-picker  #picker [showSeconds]="false" [stepSecond]=00 ></ngx-mat-datetime-picker>
+        </mat-form-field>
+        <mat-form-field>
+            <input [(ngModel)]="name" name="name" matInput placeholder="Name">
+        </mat-form-field>
+        <mat-form-field>
+            <input [(ngModel)]="email" name="email" matInput placeholder="Email">
+        </mat-form-field>
+        <button mat-raised-button color="primary">Make Appointment</button>
+    </form>
+</div>
